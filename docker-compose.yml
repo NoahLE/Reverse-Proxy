@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  reverseproxy:
+    image: reverseproxy
+    ports:
+      - 3000:3000
+      - 4000:4000
+    restart: always
+  
+  app1:
+    depends_on:
+      -reverseproxy
+    image: nginx:alpine
+    restart: always
+
+  app2:
+    depends_on:
+      - reverseproxy
+    image: httpd:alpine
+    restart: always
