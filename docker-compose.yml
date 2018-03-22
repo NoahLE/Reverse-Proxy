@@ -14,14 +14,19 @@ services:
     # depends_on:
       # - reverseproxy
     build:
-      context: /app1
+      context: ./app1
       dockerfile: "Dockerfile"
+    ports:
+      - 3000:3000
     restart: always
 
-  # app2:
-  #   container_name: app2  
-  #   depends_on:
-  #     - reverseproxy
-  #   build:
-  #     context: /app2
-  #   restart: always
+  app2:
+    container_name: app2  
+    # depends_on:
+      # - reverseproxy
+    build:
+      context: ./app2
+      dockerfile: "Dockerfile"
+    ports:
+      - 3000:3000
+    restart: always
