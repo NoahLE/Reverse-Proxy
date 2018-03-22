@@ -2,6 +2,7 @@ version: "3"
 
 services:
   reverseproxy:
+    container_name: reverse-proxy
     image: reverseproxy
     ports:
       - 3000:3000
@@ -9,13 +10,17 @@ services:
     restart: always
   
   app1:
+    container_name: app1
     depends_on:
-      -reverseproxy
-    image: nginx:alpine
+      - reverseproxy
+    build:
+      content: /app1
     restart: always
 
   app2:
+    container_name: app2  
     depends_on:
       - reverseproxy
-    image: httpd:alpine
+    build:
+      context: /app2
     restart: always
