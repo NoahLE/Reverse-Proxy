@@ -1,26 +1,27 @@
 version: "3"
 
 services:
-  reverseproxy:
-    container_name: reverse-proxy
-    image: reverseproxy
-    ports:
-      - 3000:3000
-      - 4000:4000
-    restart: always
+  # reverseproxy:
+  #   container_name: reverse-proxy
+  #   image: reverseproxy
+  #   ports:
+  #     - 3000:3000
+  #     - 4000:4000
+  #   restart: always
   
   app1:
     container_name: app1
-    depends_on:
-      - reverseproxy
+    # depends_on:
+      # - reverseproxy
     build:
-      content: /app1
+      context: /app1
+      dockerfile: "Dockerfile"
     restart: always
 
-  app2:
-    container_name: app2  
-    depends_on:
-      - reverseproxy
-    build:
-      context: /app2
-    restart: always
+  # app2:
+  #   container_name: app2  
+  #   depends_on:
+  #     - reverseproxy
+  #   build:
+  #     context: /app2
+  #   restart: always
