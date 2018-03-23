@@ -2,6 +2,7 @@ version: "3"
 
 services:
   web:
+    container_name: "rp-nginx-app1"
     build:
       context: .
       dockerfile: "Dockerfile"
